@@ -161,7 +161,32 @@ class AdvertController extends Controller
                 'listAdverts' => $advert
              ));
     }
+    
+    public function favorisAction(Request $request,$id)
+      {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
+        $favoris = $user->getfavoris();
+        
+      
+            if($favoris->contains($advert)){
+                $user->removefavori($advert);
+            }else{
+                $user->addfavori($advert);
+            }
+        
 
-  
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Ajouté au favoris.');
+
+          
+        return $this->redirect($_SERVER['HTTP_REFERER']);
+      }
+
+
 }
 

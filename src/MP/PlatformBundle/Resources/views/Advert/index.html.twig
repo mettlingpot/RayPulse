@@ -27,6 +27,9 @@
         {% endif %}
        <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
        <p><a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">favoris</a>
+        {% endif %}
      </div>
    </div>
     </div>

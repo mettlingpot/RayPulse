@@ -31,3 +31,10 @@ mp_platform_recherche:
     path:    /recherche
     defaults:  { _controller: MPPlatformBundle:Advert:recherche }
 
+mp_platform_favoris:
+    path:    /favoris/{id}
+    defaults:  { _controller: MPPlatformBundle:Advert:favoris }
+    requirements: 
+        id: '\d+'
+
+

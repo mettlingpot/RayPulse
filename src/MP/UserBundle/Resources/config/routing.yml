@@ -9,4 +9,4 @@ mp_user_register:
 mp_user_profil:
     path:    /profil
     defaults:  { _controller: MPUserBundle:User:profil }
-
+    

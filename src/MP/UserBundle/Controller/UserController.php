@@ -49,6 +49,7 @@ class UserController extends Controller
       {
         $user = $this->getUser();
         $userId = $user->getId();
+        $favoris = $user->getFavoris();
           
         $repository = $this->getDoctrine()
         ->getManager()
@@ -56,6 +57,7 @@ class UserController extends Controller
         ;
 
         $advert = $repository->findByUser($userId);
+        //$advert2 = $repository->findByFavoris($favoris);
 
           if (null === $user) {
             return $this->redirectToRoute('mp_user_register');

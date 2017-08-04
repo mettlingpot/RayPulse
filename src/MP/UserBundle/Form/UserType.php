@@ -2,12 +2,14 @@
 
 namespace MP\UserBundle\Form;
 
-use MP\UserBundle\Form\AdresseType;
 use MP\PlatformBundle\Entity\Adresse;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use MP\PlatformBundle\Form\AdresseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserType extends AbstractType
 {
@@ -18,7 +20,15 @@ class UserType extends AbstractType
     {
         $builder->add('username')
             ->add('password')
-            ->add('save',SubmitType::class);
+            ->add('email')
+            ->add('adresse',    AdresseType::class) 
+           ->add('favoris', EntityType::class, array(
+                'class'        => 'MPPlatformBundle:Advert',
+                'choice_label' => 'id',
+                'multiple'     => true,
+                'expanded'     => true,
+              ))
+            ->add('save',      SubmitType::class);
     }
     
     /**

@@ -4,6 +4,9 @@ namespace MP\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use MP\PlatformBundle\Entity\Advert;
+use Doctrine\Common\Collections\ArrayCollection;
+use MP\PlatformBundle\Entity\Adresse;
 /**
  * User
  *
@@ -35,6 +38,12 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @var string
@@ -50,9 +59,21 @@ class User implements UserInterface
      */
     private $role = ['ROLE_AUTEUR'];
     /**
-    * @ORM\ManyToMany(targetEntity="MP\PlatformBundle\Entity\Adresse", cascade={"persist"})
+    * @ORM\OneToOne(targetEntity="MP\PlatformBundle\Entity\Adresse", cascade={"persist"})
     */
     private $adresse;
+    /**
+    * @ORM\ManyToMany(targetEntity="MP\PlatformBundle\Entity\Advert", cascade={"persist"})
+    */
+    private $favoris;
+    /**
+     * Constructor
+     */
+    public function __construct()
+      {
+        $this->favoris = new ArrayCollection();
+        $this->adresse = new Adresse();
+      }
 
     public function eraseCredentials()
     {
@@ -188,15 +209,6 @@ class User implements UserInterface
         return $this->role;
     }
 
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->adresse = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Add adresse
      *
@@ -229,5 +241,77 @@ class User implements UserInterface
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Add favori
+     *
+     * @param \MP\PlatformBundle\Entity\Advert $favori
+     *
+     * @return User
+     */
+    public function addFavori(\MP\PlatformBundle\Entity\Advert $favori)
+    {
+        $this->favoris[] = $favori;
+
+        return $this;
+    }
+
+    /**
+     * Remove favori
+     *
+     * @param \MP\PlatformBundle\Entity\Advert $favori
+     */
+    public function removeFavori(\MP\PlatformBundle\Entity\Advert $favori)
+    {
+        $this->favoris->removeElement($favori);
+    }
+
+    /**
+     * Get favoris
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \MP\PlatformBundle\Entity\Adresse $adresse
+     *
+     * @return User
+     */
+    public function setAdresse(\MP\PlatformBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
     }
 }

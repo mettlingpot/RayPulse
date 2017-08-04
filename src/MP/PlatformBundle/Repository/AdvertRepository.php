@@ -38,10 +38,9 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
 
-    public function findByRecherche($id)
+    public function findByRecherche($recherche)
     {
   
-    $recherche = $id;
       $qb = $this->createQueryBuilder('a');
 
       $qb   ->innerJoin('a.adresse', 'adr')

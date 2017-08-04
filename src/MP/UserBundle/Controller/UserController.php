@@ -1,11 +1,13 @@
 <?php
 namespace MP\UserBundle\Controller;
 
+use MP\PlatformBundle\Entity\Adresse;
 use MP\PlatformBundle\Entity\Advert;
 use MP\UserBundle\Entity\User;
 use MP\UserBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +24,8 @@ class UserController extends Controller
         $user = new User();
 
         $formUser   = $this->get('form.factory')->create(UserType::class, $user);
+        $adresse = new Adresse();
+        $favoris = new ArrayCollection();
         
         if ($request->isMethod('POST')) {
           $formUser->handleRequest($request);
@@ -32,7 +36,6 @@ class UserController extends Controller
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Bienvenue');
-
             return $this->redirectToRoute('login');
           }
         }

@@ -57,7 +57,6 @@ class UserController extends Controller
         ;
 
         $advert = $repository->findByUser($userId);
-        //$advert2 = $repository->findByFavoris($favoris);
 
           if (null === $user) {
             return $this->redirectToRoute('mp_user_register');
@@ -65,7 +64,7 @@ class UserController extends Controller
           else {
               
             return $this->render('MPUserBundle:User:profil.html.twig', array(
-            'listAdverts' => $advert
+            'listAdverts' => $advert, 'listFavoris' => $favoris
              ));
           }
               

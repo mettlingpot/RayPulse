@@ -1,0 +1,9 @@
+<ul class="nav nav-pills nav-stacked">
+  {% for advert in listAdverts|slice(0, 10) %}
+    <li>
+      <a href="{{ path('mp_platform_view', {'id': advert.id}) }}">
+        {{ advert.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,10 @@
+{% block body %}
+<div class="well">
+        <form class="form-signin" action="{{path('mp_platform_recherche')}}" method="get">
+            <label for="recherche">recherche :</label><br/>
+            <input type="text" id="recherche" name="_recherche" />
+
+          <button class="btn btn-primary btn-block" type="submit" value="recherche">Recherche</button>  
+        </form>
+</div>
+{% endblock %}

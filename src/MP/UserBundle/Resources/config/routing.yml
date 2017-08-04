@@ -1,0 +1,12 @@
+mp_user_homepage:
+    path:     /
+    defaults: { _controller: MPUserBundle:User:register }
+    
+mp_user_register:
+    path:    /register
+    defaults:  { _controller: MPUserBundle:User:register }
+
+mp_user_profil:
+    path:    /profil
+    defaults:  { _controller: MPUserBundle:User:profil }
+

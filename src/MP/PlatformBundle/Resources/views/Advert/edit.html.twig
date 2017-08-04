@@ -1,0 +1,25 @@
+{% extends "MPPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block MP_body %}
+
+  <h2>Modifier un événement</h2>
+
+  {{ include("MPPlatformBundle:Advert:form.html.twig") }}
+
+  <p>
+    Vous éditez un événement déjà existante, merci de ne pas changer
+    l'esprit général de l'événement déjà publiée.
+  </p>
+
+  <p>
+    <a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'événement
+    </a>
+  </p>
+
+{% endblock %}

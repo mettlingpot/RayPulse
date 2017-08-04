@@ -1,0 +1,25 @@
+{% extends "MPPlatformBundle::layout.html.twig" %}
+{% block body %}
+<div class="well">
+    <h3>Favoris</h3>
+
+    <h4>Mes événements</h4>
+    {% for advert in listAdverts %}
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        {% if advert.image is not null %}
+            <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+        {% endif %}
+            <div class="caption">
+                <h3>{{ advert.title }}</h3>
+                <p><a href="{{ path('mp_platform_edit', {'id': advert.id}) }}"  class="btn btn-xs btn-primary" role="button">Modifier  <i class="glyphicon glyphicon-edit"></i></a> 
+                <a href="{{ path('mp_platform_delete', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger">Supprimer <i class="glyphicon glyphicon-trash"></i></a></p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    Pas (encore !) d'événement 
+    <a href="{{ path('mp_platform_add') }}">Ajouter un événement</a>
+    {% endfor %}
+</div>
+{% endblock %}    

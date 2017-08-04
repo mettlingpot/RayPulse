@@ -1,0 +1,44 @@
+{% extends "MPPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block MP_body %}
+
+
+
+  <h2>{{ advert.title }}</h2>
+  <i>Par {{ advert.author }},         
+      {% if (advert.datedebut < advert.datefin) %}
+            <p> Du {{ advert.datedebut|date('d/m/Y')  }} au {{ advert.datefin |date('d/m/Y') }}  </p>
+         {% else %}
+            <p> Le {{ advert.datedebut|date('d/m/Y')  }} </p>
+        {% endif %}</i>
+    {% if advert.adresse is not null %}{{ advert.adresse.numero }} {{ advert.adresse.rue }} {{ advert.adresse.code }} {{ advert.adresse.ville }} {% endif %}
+  <div class="well">
+          <a href=" {{ advert.site }}"> {{ advert.site | raw }}</a>
+     </br>
+    {{ advert.content }}
+  </div>
+   {% if not advert.categories.empty %}
+  <p>
+    Cet événement est parue dans les catégories suivantes :
+    {% for category in advert.categories %}
+      {{ category.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+    {% endif %}
+    {% if advert.image is not null %}
+      <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+    {% endif %}
+
+  <p>
+    <a href="{{ path('mp_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+
+  </p>
+
+{% endblock %}

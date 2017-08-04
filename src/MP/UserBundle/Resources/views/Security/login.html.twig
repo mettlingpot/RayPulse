@@ -1,0 +1,25 @@
+
+{% extends "MPPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+
+{% if error %}
+<div class="alert alert-danger">{{ error.message }}</div>
+{% endif %}
+    <div class="col-md-6 col-md-offset-2">
+        <div class="well">
+
+        <form class="form-signin" action="{{path('login')}}" method="post">
+            <h2 class="form-signin-heading">Please login</h2><br/>
+            <label for="username">login :</label><br/>
+            <input type="text" id="username" name="_username" value="{{ last_username }}"/><br/><br/>
+
+            <label for="password">password :</label><br/>
+            <input type="password" id="password" name="_password"/><br/><br/>
+
+          <button class="btn btn-primary btn-block" type="submit" value="connexion">Login</button>  
+        </form>
+    </div> 
+</div>
+
+{% endblock %}

@@ -13,7 +13,7 @@
                     <h3>{{ advert.title }}</h3>
                     <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
                     <a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>
-                        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger" role="button" title="En savoir +">retirer favoris</a>
+                        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger" role="button" title="En savoir +">retirer favoris<i class="glyphicon glyphicon-heart"></i></a>
                 </div>
             </div>
         </div>

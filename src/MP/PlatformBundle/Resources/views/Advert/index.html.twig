@@ -15,7 +15,7 @@
      <div class="caption">
          
        {% if advert.title|length > 20 %}
-         <h5>{{ advert.title }}</h>
+         <h3>{{ advert.title|slice(0, 17) }}...</h3>
        {% else %}
          <h3>{{ advert.title }}</h3>
         {% endif %}
@@ -28,7 +28,7 @@
        <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
        <p><a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">favoris</a>
+        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">favoris<i class="glyphicon glyphicon-heart"></i></a>
         {% endif %}
      </div>
    </div>

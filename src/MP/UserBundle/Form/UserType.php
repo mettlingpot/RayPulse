@@ -18,16 +18,11 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username')
-            ->add('password')
+        $builder
             ->add('email')
-            ->add('adresse',    AdresseType::class) 
-           ->add('favoris', EntityType::class, array(
-                'class'        => 'MPPlatformBundle:Advert',
-                'choice_label' => 'id',
-                'multiple'     => true,
-                'expanded'     => true,
-              ))
+            ->add('username')
+            ->add('password')
+            //->add('adresse',    AdresseType::class) 
             ->add('save',      SubmitType::class);
     }
     

@@ -6,8 +6,8 @@
 
   <title>{% block title %}mettlingpot{% endblock %}</title>
 
-  {% block stylesheets %}      
-    <link rel="stylesheet" href="web/main.css"/>
+  {% block stylesheets %}          
+    <link rel="stylesheet" href="{{ asset('main.css') }}"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
   {% endblock %}
@@ -17,25 +17,24 @@
 {{ include("::nav.html.twig") }}
   <div class="container">
       
-    <div id="header" class="jumbotron">
-        
-{{ include("::recherche.html.twig") }}
-    </div>
 
     <div class="row">
       <div id="menu" class="col-md-3">
+          
+        
+{{ include("::recherche.html.twig") }}
               
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <h3><a href="{{ path('mp_user_profil') }}">{{ app.user.username }}</a></h3>
         <ul class="nav nav-pills nav-stacked"> 
             <li><a href="{{ path('mp_platform_add') }}">Ajouter un événement</a></li>
-            <li><a href="#">Favoris</a></li>
+            <li><a href="{{ path('mp_user_profil') }}">Favoris</a></li>
             <li><a href="{{ path('logout') }}">Déconnexion</a></li>
         </ul> 
-        <h4>Dernier événement</h4>
+        <h4>Evénements à venir</h4>
            {{ render(controller("MPPlatformBundle:Advert:menu", {'limit': 3})) }}
         {% else %}
-        <h4>Dernier événement</h4>
+        <h4>Evénements à venir</h4>
            {{ render(controller("MPPlatformBundle:Advert:menu", {'limit': 3})) }}
         {% endif %}
       </div>
@@ -49,7 +48,7 @@
 
     <footer>
         <div id="content" class="col-md-9">
-            <p>Mettlingpot Copyrignt © {{ 'now'|date('Y') }}</p>
+            <p>Mettlingpot Copyrignt © {{ 'now'|date('Y') }} Beta</p>
         </div>
     </footer>
   </div>

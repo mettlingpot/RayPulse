@@ -1,9 +1,11 @@
 {% block body %}
-<div class="well">
-        <form class="form-signin" action="{{path('mp_platform_recherche')}}" method="get">
-            <input type="text" id="recherche" name="_recherche" />
+<form class="form" action="{{path('mp_platform_recherche')}}" method="get">
+    <div class="input-group col-lg-12"> 
+        <input class="form-control" type="text" id="recherche" name="_recherche" placeholder="Search..."/>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" value="recherche"><span class="glyphicon glyphicon-search"></span></button>  
+        </span>
+    </div>
+</form>
 
-          <button class="btn btn-xs" type="submit" value="recherche">Recherche</button>  
-        </form>
-</div>
 {% endblock %}

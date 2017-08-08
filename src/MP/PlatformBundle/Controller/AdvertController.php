@@ -5,7 +5,6 @@ namespace MP\PlatformBundle\Controller;
 
 use MP\UserBundle\Entity\User;
 use MP\PlatformBundle\Entity\Adresse;
-
 use MP\PlatformBundle\Form\RechercheType;
 use MP\PlatformBundle\Form\AdresseType;
 use MP\PlatformBundle\Entity\Advert;
@@ -19,20 +18,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
 class AdvertController extends Controller
 {
     public function indexAction($page)
-    {
-        if ($page < 1) {
-            throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
-    }
-    $em = $this->getDoctrine()->getManager()->getRepository('MPPlatformBundle:Advert');
-        
-    $advert = $em->findByDate();
+    { 
+        $nbArticlesParPage = 9;
 
-        return $this->render('MPPlatformBundle:Advert:index.html.twig', array(
-                'listAdverts' => $advert
-             ));
+        $em = $this->getDoctrine()->getManager()->getRepository('MPPlatformBundle:Advert');
+        
+        $advert = $em->findAllPagination($page, $nbArticlesParPage);
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($advert) / $nbArticlesParPage),
+            'nomRoute' => 'mp_platform_home',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('MPPlatformBundle:Advert:index.html.twig', array(         
+            
+            'pagination' => $pagination,'listAdverts' => $advert
+            ));
     }
     
 

@@ -88,7 +88,6 @@ class AdvertController extends Controller
     $form = $this->get('form.factory')->create(AdvertEditType::class, $advert);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      // Inutile de persister ici, Doctrine connait déjà notre annonce
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('notice', 'événement bien modifiée.');
@@ -162,8 +161,8 @@ class AdvertController extends Controller
         $recherche = $request->query->get('_recherche');
         $em = $this->getDoctrine()->getManager()->getRepository('MPPlatformBundle:Advert');
         $advert = $em->findByRecherche($recherche);
-
-        return $this->render('MPPlatformBundle:Advert:index.html.twig', array(
+        
+        return $this->render('MPPlatformBundle:Advert:resultRech.html.twig', array(
                 'listAdverts' => $advert
              ));
     }

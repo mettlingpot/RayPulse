@@ -1,3 +1,7 @@
+mp_api:
+    resource: "@MPApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 mp_user:
     resource: "@MPUserBundle/Resources/config/routing.yml"
     prefix:   /user

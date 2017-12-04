@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new MP\PlatformBundle\MPPlatformBundle(),
             new MP\UserBundle\MPUserBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new MP\ApiBundle\MPApiBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

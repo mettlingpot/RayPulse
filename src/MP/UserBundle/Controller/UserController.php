@@ -42,6 +42,7 @@ class UserController extends Controller
             $em->flush();
             //mail
             $email = $user->getEmail();
+            $name = $user->getUsername();
 
             $message = \Swift_Message::newInstance()
             ->setSubject('Bienvenue')
@@ -51,7 +52,7 @@ class UserController extends Controller
             $this->renderView(
                 // app/Resources/views/emails/registration.html.twig
                 'emails/registration.html.twig',
-                array('name' => $name, 'prenom' => $prenom)
+                array('name' => $name)
             ),
             'text/html'
             );

@@ -16,10 +16,13 @@ class DefaultController extends Controller
     }
 
     public function showAction($id, Request $request)
-    {        
-        $article = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findById($id);
+    {     
+        $tabArticle = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findById($id);
+        $article = $tabArticle[0];
 
-        $data = $this->get('jms_serializer')->serialize($article, 'json');
+        $retest= $article->getUser()->getUsername();
+
+        $data = $this->get('jms_serializer')->serialize($retest, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');

@@ -99,6 +99,18 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+    public function findByApi($id){
+
+        $qb = $this->createQueryBuilder('a');
+
+      $qb->where('a.user = :id')->setParameter('id', $id)
+      ;
+
+      return $qb
+        ->getQuery()
+        ->getResult()
+      ;
+    }
 }
 
 

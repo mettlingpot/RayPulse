@@ -51,7 +51,7 @@ class UserController extends Controller
             ->setBody(
             $this->renderView(
                 // app/Resources/views/emails/registration.html.twig
-                'emails/registration.html.twig',
+                'Emails/registration.html.twig',
                 array('name' => $name)
             ),
             'text/html'

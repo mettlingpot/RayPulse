@@ -1,0 +1,40 @@
+{% extends "MPPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block MP_body %}
+
+{% for advert in listAdverts %}
+<div class="col-sm-6 col-md-4">
+   <div class="thumbnail">
+       {% if advert.image is not null %}
+            <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+       {% endif %}
+     <div class="caption">
+         
+       {% if advert.title|length > 20 %}
+         <h3>{{ advert.title|slice(0, 17) }}...</h3>
+       {% else %}
+         <h3>{{ advert.title }}</h3>
+        {% endif %}
+         
+        {% if (advert.datedebut < advert.datefin) %}
+            <p>Du {{ advert.datedebut|date('d/m/Y')  }} au {{ advert.datefin |date('d/m/Y') }}  </p>
+         {% else %}
+            <p>Le {{ advert.datedebut|date('d/m/Y')  }} </p>
+        {% endif %}
+       <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
+       <p><a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">favoris<i class="glyphicon glyphicon-heart"></i></a>
+        {% endif %}
+     </div>
+   </div>
+</div>
+{% else %}
+    <li>Pas d'événement correspondant</li>    
+{% endfor %}
+
+{% endblock %}

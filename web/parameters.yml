@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: mettlingpot.com
+    database_port: /
+    database_name: mettl815460
+    database_user: mettl815460
+    database_password: m3Y4h5s6uY
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 1a44a3a522ce0321783da5632256907cfc678911

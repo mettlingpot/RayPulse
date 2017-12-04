@@ -6,6 +6,7 @@ use MP\PlatformBundle\Entity\Advert;
 use MP\UserBundle\Entity\User;
 use MP\UserBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -31,10 +32,33 @@ class UserController extends Controller
           $formUser->handleRequest($request);
 
           if ($formUser->isValid()) {
+            
+            $passwordEncoder = $this->get('security.password_encoder');
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            //mail
+            $email = $user->getEmail();
 
+            $message = \Swift_Message::newInstance()
+            ->setSubject('Bienvenue')
+            ->setFrom('postmaster@bondesavoir.fr')
+            ->setTo( $email )
+            ->setBody(
+            $this->renderView(
+                // app/Resources/views/emails/registration.html.twig
+                'emails/registration.html.twig',
+                array('name' => $name, 'prenom' => $prenom)
+            ),
+            'text/html'
+            );
+              
+        $this->get('mailer')->send($message);
+  
+              
             $request->getSession()->getFlashBag()->add('notice', 'Bienvenue');
             return $this->redirectToRoute('login');
           }

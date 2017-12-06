@@ -20,10 +20,10 @@ class DefaultController extends Controller
         $tabArticle = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findById($id);
         $article = $tabArticle[0];
 
-        $advert[0] = $article->getUser()->getUsername();
-        $advert[1] = $article->getTitle();
+        // $advert[0] = $article->getUser()->getUsername();
+        // $advert[1] = $article->getTitle();
 
-        $data = $this->get('jms_serializer')->serialize($advert, 'json');
+        $data = $this->get('jms_serializer')->serialize($tabArticle, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');

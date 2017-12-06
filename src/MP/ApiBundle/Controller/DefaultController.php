@@ -3,6 +3,9 @@
 namespace MP\ApiBundle\Controller;
 
 use MP\PlatformBundle\Entity\Advert;
+use MP\PlatformBundle\Entity\Liste;
+use MP\PlatformBundle\Entity\Category;
+use MP\UserBundle\Entity\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +20,18 @@ class DefaultController extends Controller
 
     public function showAction($id, Request $request)
     {     
-        $tabArticle = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findById($id);
-        $article = $tabArticle[0];
-
+        $liste = new liste();
+        //$articles = new Article();
+        
+        $articles = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findById($id);
+        
+        foreach ($articles as $value) {
+                $liste->addArticle($value);
+        }
         // $advert[0] = $article->getUser()->getUsername();
         // $advert[1] = $article->getTitle();
 
-        $data = $this->get('jms_serializer')->serialize($tabArticle, 'json');
+        $data = $this->get('jms_serializer')->serialize($liste, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
@@ -34,20 +42,21 @@ class DefaultController extends Controller
     
     public function listAction()
     {
-        //$liste = new liste();
+        $liste = new liste();
         //$articles = new Article();
         
         $articles = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findAll();
         
-        // foreach ($articles as $value) {
-        //         $liste->addArticle($value);
-        // }
+        foreach ($articles as $value) {
+                $liste->addArticle($value);
+        }
         
-        $data = $this->get('jms_serializer')->serialize($articles, 'json');
+        $data = $this->get('jms_serializer')->serialize($liste, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
+
 }

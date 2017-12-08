@@ -1,6 +1,11 @@
 mp_api_homepage:
     path:     /
     defaults: { _controller: MPApiBundle:Default:index }
+
+mp_api_articles_create:
+    path:     /articles
+    defaults: { _controller: MPApiBundle:Default:create }
+    methods:  [POST]
     
 mp_api_articles_list:
     path:     /articles

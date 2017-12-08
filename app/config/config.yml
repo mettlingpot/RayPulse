@@ -19,6 +19,7 @@ framework:
     csrf_protection: ~
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
+    
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -73,3 +74,14 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
     
+fos_rest:
+    body_converter:
+        enabled: true
+    view:
+        formats: { json: true, xml: false, rss: false }
+        view_response_listener: true
+    serializer:
+        serialize_null: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: 'json' }

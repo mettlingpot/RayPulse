@@ -1,12 +1,12 @@
 <?php
 
-namespace MP\ApiBundle\Controller;
+namespace MP\MairieBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MP\MairieBundle\Entity\Article;
-use MP\MairieBundle\Entity\liste;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 
 
@@ -14,7 +14,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MPApiBundle:Default:index.html.twig');
+        return $this->render('MPMairieBundle:Default:index.html.twig');
     }  
     
 
@@ -23,12 +23,6 @@ class DefaultController extends Controller
         $data = $request->getContent();
         $article = $this->get('jms_serializer')->deserialize($data, 'MP\MairieBundle\Entity\Article', 'json');
         
-        $errors = $this->get('validator')->validate($article);
-
-        if (count($errors)) {
-            return $this->view($errors, Response::HTTP_BAD_REQUEST);
-        }
-
         $em = $this->getDoctrine()->getManager();
         $em->persist($article);
         $em->flush();
@@ -36,29 +30,27 @@ class DefaultController extends Controller
         return new Response('', Response::HTTP_CREATED);
     }    
 
-    public function showAction(Article $article)
+    public function showAction(Article $article, Request $request)
     {
         $data = $this->get('jms_serializer')->serialize($article, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
          
-        return $response;
+        if ($response = false) {
+            return $response;
+        }
+        
+        return $this->render('MPMairieBundle:Default:index.html.twig', array(
+          'comp' => $article
+        ));
 
     }    
     
     public function listAction()
     {
-        $liste = new liste();
-        //$articles = new Article();
-        
         $articles = $this->getDoctrine()->getRepository('MPMairieBundle:Article')->findAll();
-        
-        foreach ($articles as $value) {
-                $liste->addArticle($value);
-        }
-        
-        $data = $this->get('jms_serializer')->serialize($liste, 'json');
+        $data = $this->get('jms_serializer')->serialize($articles, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');

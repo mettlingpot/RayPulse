@@ -20,6 +20,9 @@ class AppKernel extends Kernel
             new MP\UserBundle\MPUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new MP\ApiBundle\MPApiBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new MP\MairieBundle\MPMairieBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

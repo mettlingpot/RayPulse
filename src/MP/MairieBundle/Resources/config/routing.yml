@@ -1,0 +1,19 @@
+mp_mairie_homepage:
+    path:     /
+    defaults: { _controller: MPMairieBundle:Default:index }
+
+
+mp_mairie_articles_create:
+    path:     /articles
+    defaults: { _controller: MPMairieBundle:Default:create }
+    methods:  [POST]
+    
+mp_mairie_articles_list:
+    path:     /articles
+    defaults: { _controller: MPMairieBundle:Default:list }
+    methods:  [GET]
+    
+mp_mairie_articles_show:
+    path:     /articles/{id}
+    defaults: { _controller: MPMairieBundle:Default:show }
+    methods:  [GET]

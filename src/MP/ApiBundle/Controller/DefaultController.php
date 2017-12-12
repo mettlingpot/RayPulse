@@ -21,7 +21,7 @@ class DefaultController extends Controller
     public function createAction(Request $request)
     {
         $data = $request->getContent();
-        $article = $this->get('jms_serializer')->deserialize($data, 'MP\MairieBundle\Entity\Article', 'json');
+        $article = $this->get('jms_serializer')->deserialize($data, 'MP\PlatformBundle\Entity\Advert', 'json');
         
         $errors = $this->get('validator')->validate($article);
 

@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new MP\ApiBundle\MPApiBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new MP\MairieBundle\MPMairieBundle(),
+            // new MP\MairieBundle\MPMairieBundle(),
 
         ];
 

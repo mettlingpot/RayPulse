@@ -11,16 +11,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="<?= set_active('index') ?>"><a href="{{ path('mp_platform_home') }}">Accueil</a></li>
-            <li class="<?= set_active('inscription') ?>"><a href="{{ path('mp_user_register') }}">Inscription</a></li>
-            <li class="<?= set_active('login') ?> ">        
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a href="{{ path('logout') }}">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('login') }}">Connexion</a>
-                {% endif %}
-            </li>
-            <li> {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}<a href="{{ path('mp_user_profil') }}">Gérer les événements de {{ app.user.username }}{% endif %}</a></li>
+           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              <li><a href="{{ path('mp_user_profil') }}">Gérer les événements de {{ app.user.username }}</a></li>
+              <li class="<?= set_active('login') ?> "><a href="{{ path('logout') }}">Déconnexion</a>
+           {% else %}
+              <li class="<?= set_active('login') ?> "> <a href="{{ path('login') }}">Connexion</a></li>
+              <li class="<?= set_active('inscription') ?>"><a href="{{ path('mp_user_register') }}">Inscription</a></li>
+           {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

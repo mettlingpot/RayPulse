@@ -82,6 +82,6 @@ fos_rest:
         view_response_listener: true
     serializer:
         serialize_null: true
-    format_listener:
-        rules:
-            - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+#     format_listener:
+#         rules:
+#             - { path: '^/', priorities: ['json'], fallback_format: 'json' }

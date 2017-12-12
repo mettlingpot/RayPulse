@@ -300,4 +300,18 @@ class User implements UserInterface
     {
         return $this->favoris;
     }
+
+    /**
+     * Set adresse
+     *
+     * @param \MP\PlatformBundle\Entity\Adresse $adresse
+     *
+     * @return User
+     */
+    public function setAdresse(\MP\PlatformBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
 }

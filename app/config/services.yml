@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    # serializer_listener.article:
+    #     class: MP\MairieBundle\Serializer\Listener\ArticleListener
+    #     tags:
+    #         - { name: jms_serializer.event_subscriber }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

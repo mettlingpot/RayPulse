@@ -3,8 +3,8 @@
 namespace MP\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use MP\MairieBundle\Entity\Article;
-use MP\MairieBundle\Entity\liste;
+use MP\PlatformBundle\Entity\Advert;
+use MP\PlatformBundle\Entity\Liste;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,7 +36,7 @@ class DefaultController extends Controller
         return new Response('', Response::HTTP_CREATED);
     }    
 
-    public function showAction(Article $article)
+    public function showAction(Advert $article)
     {
         $data = $this->get('jms_serializer')->serialize($article, 'json');
 
@@ -52,7 +52,7 @@ class DefaultController extends Controller
         $liste = new liste();
         //$articles = new Article();
         
-        $articles = $this->getDoctrine()->getRepository('MPMairieBundle:Article')->findAll();
+        $articles = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findAll();
         
         foreach ($articles as $value) {
                 $liste->addArticle($value);

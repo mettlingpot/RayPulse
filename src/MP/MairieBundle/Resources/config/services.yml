@@ -1,4 +1,0 @@
-services:
-#    mp_mairie.example:
-#        class: MP\MairieBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,19 +1,19 @@
 <?php
 
-namespace MP\MairieBundle\Entity;
+namespace MP\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use MP\MairieBundle\Entity\Article;
+use MP\PlatformBundle\Entity\Advert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
  * list
  *
- * @ORM\Table(name="liste")
- * @ORM\Entity(repositoryClass="MP\MairieBundle\Repository\listRepository")
+ * @ORM\Table(name="list")
+ * @ORM\Entity(repositoryClass="MP\PlatformBundle\Repository\listRepository")
  */
-class liste
+class Liste
 {
     /**
      * @var int
@@ -25,7 +25,7 @@ class liste
     private $id;
     
     /**
-    * @ORM\ManyToMany(targetEntity="MP\MairieBundle\Entity\Article", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="MP\PlatformBundle\Entity\Advert", cascade={"persist"})
     */
     private $articles;
 
@@ -43,7 +43,7 @@ class liste
         return $this->id;
     }
     
-    public function addArticle(\MP\MairieBundle\Entity\Article $article)
+    public function addArticle(\MP\PlatformBundle\Entity\Advert $article)
     {
         $this->articles[] = $article;
 

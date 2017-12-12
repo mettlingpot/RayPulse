@@ -1,6 +1,6 @@
 <?php
 
-namespace MP\MairieBundle\Repository;
+namespace MP\PlatformBundle\Repository;
 
 /**
  * listRepository

@@ -1,18 +1,18 @@
-mp_api_homepage:
-    path:     /
-    defaults: { _controller: MPApiBundle:Default:index }
+# mp_api_homepage:
+#     path:     /
+#     defaults: { _controller: MPApiBundle:Default:index }
 
-mp_api_articles_create:
-    path:     /articles
-    defaults: { _controller: MPApiBundle:Default:create }
-    methods:  [POST]
+# mp_api_articles_create:
+#     path:     /articles
+#     defaults: { _controller: MPApiBundle:Default:create }
+#     methods:  [POST]
     
-mp_api_articles_list:
-    path:     /articles
-    defaults: { _controller: MPApiBundle:Default:list }
-    methods:  [GET]
+# mp_api_articles_list:
+#     path:     /articles
+#     defaults: { _controller: MPApiBundle:Default:list }
+#     methods:  [GET]
     
-mp_api_articles_show:
-    path:     /articles/{id}
-    defaults: { _controller: MPApiBundle:Default:show }
-    methods:  [GET]
+# mp_api_articles_show:
+#     path:     /articles/{id}
+#     defaults: { _controller: MPApiBundle:Default:show }
+#     methods:  [GET]

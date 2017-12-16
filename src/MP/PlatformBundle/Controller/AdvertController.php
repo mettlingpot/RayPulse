@@ -44,7 +44,7 @@ class AdvertController extends Controller
 
   public function addAction(Request $request)
   {
- 
+    $session = $request->getSession();
     $advert = new Advert();
     $user = $this->getUser();
     $adresse = new Adresse();
@@ -63,7 +63,8 @@ class AdvertController extends Controller
         $em->persist($advert);
         $em->flush();
 
-        $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+        $session = $request->getSession();
+        $session->getFlashBag()->add('info', 'Evénement bien enregistré');
 
         return $this->redirectToRoute('mp_platform_view', array('id' => $advert->getId()));
       }
@@ -78,19 +79,20 @@ class AdvertController extends Controller
   public function editAction($id, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-
     $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
 
     if (null === $advert) {
-      throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
+      // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
+      $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'existe pas.");
+      return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     $form = $this->get('form.factory')->create(AdvertEditType::class, $advert);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em->flush();
-
-      $request->getSession()->getFlashBag()->add('notice', 'événement bien modifiée.');
+        
+      $request->getSession()->getFlashBag()->add('info', 'événement bien modifié.');
 
       return $this->redirectToRoute('mp_platform_view', array('id' => $advert->getId()));
     }
@@ -138,7 +140,7 @@ class AdvertController extends Controller
     ));
   }
     
-  public function viewAction($id)
+  public function viewAction($id,Request $request)
   {
     $repository = $this->getDoctrine()
       ->getManager()
@@ -148,7 +150,9 @@ class AdvertController extends Controller
     $advert = $repository->find($id);
 
     if (null === $advert) {
-      throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+      // throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+      $request->getSession()->getFlashBag()->add('info', "Désolé, l'événement n'existe pas encore.");
+      return $this->redirectToRoute('mp_platform_home');
     }
 
     return $this->render('MPPlatformBundle:Advert:view.html.twig', array(
@@ -173,21 +177,17 @@ class AdvertController extends Controller
         $user = $this->getUser();
         $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
         $favoris = $user->getfavoris();
-        
       
             if($favoris->contains($advert)){
+                $request->getSession()->getFlashBag()->add('info', 'Supprimé des favoris.');
                 $user->removefavori($advert);
             }else{
+                $request->getSession()->getFlashBag()->add('info', 'Ajouté aux favoris.');
                 $user->addfavori($advert);
             }
-        
-
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
-
-        $request->getSession()->getFlashBag()->add('notice', 'Ajouté au favoris.');
-
           
         return $this->redirect($_SERVER['HTTP_REFERER']);
       }

@@ -17,7 +17,7 @@
         {% endif %}</i>
     {% if advert.adresse is not null %}{{ advert.adresse.numero }} {{ advert.adresse.rue }} {{ advert.adresse.code }} {{ advert.adresse.ville }} {% endif %}
   <div class="well">
-          <a href=" {{ advert.site }}"> {{ advert.site | raw }}</a>
+          <a href=" http://{{ advert.site }}"> {{ advert.site | raw }}</a>
      </br>
     {{ advert.content }}
   </div>

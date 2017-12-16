@@ -30,7 +30,6 @@ class AdvertType extends AbstractType
             ->add('site')
             ->add('prix')
             ->add('content')
-            ->add('published')
             ->add('adresse',    AdresseType::class) 
             ->add('image',      ImageType::class) 
             ->add('categories', EntityType::class, array(

@@ -6,14 +6,21 @@ body {
 	margin-top: 80px;
   margin-bottom: 80px;
 }
+.containerImg{
+min-height: 190px;
 
+}
+.img{
+	max-height: 190px;
+	margin: auto;
+}
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);  
-
+}
   .form-signin-heading,
 	.checkbox {
 	  margin-bottom: 30px;
@@ -42,4 +49,3 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
-}

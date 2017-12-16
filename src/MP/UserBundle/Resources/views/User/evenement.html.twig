@@ -5,7 +5,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
             {% if advert.image is not null %}
-                <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+                <div class="containerImg"><img class="img-responsive img" src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}"></div>
             {% endif %}
                 <div class="caption">
                     {% if advert.title|length > 20 %}
@@ -14,7 +14,7 @@
                     <h3>{{ advert.title }}</h3>
                     {% endif %}
                     <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
-                    <p><a href="{{ path('mp_platform_edit', {'id': advert.id}) }}"  class="btn btn-xs btn-primary" role="button">Modifier  <i class="glyphicon glyphicon-edit"></i></a> 
+                    <a href="{{ path('mp_platform_edit', {'id': advert.id}) }}"  class="btn btn-xs btn-primary" role="button">Modifier  <i class="glyphicon glyphicon-edit"></i></a> 
                     <a href="{{ path('mp_platform_delete', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger">Supprimer <i class="glyphicon glyphicon-trash">     </i></a></p>
                 </div>
             </div>

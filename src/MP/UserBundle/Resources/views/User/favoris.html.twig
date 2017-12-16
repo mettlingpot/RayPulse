@@ -5,7 +5,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
             {% if advert.image is not null %}
-                <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+                <div class="containerImg"><img class="img-responsive img" src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}"></div>
             {% endif %}
                 <div class="caption">       
                     {% if advert.title|length > 20 %}
@@ -15,7 +15,7 @@
                     {% endif %}
                     <p>{% if advert.adresse is not null %}{{ advert.adresse.ville }} {% endif %}</p>
                     <a href="{{ path('mp_platform_view', {'id': advert.id}) }}" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>
-                        <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger" role="button" title="En savoir +">retirer favoris<i class="glyphicon glyphicon-heart"></i></a>
+                    <a href="{{ path('mp_platform_favoris', {'id': advert.id}) }}" class="btn btn-xs btn-primary btn-danger" role="button" title="En savoir +">retirer favoris<i class="glyphicon glyphicon-heart"></i></a>
                 </div>
             </div>
         </div>

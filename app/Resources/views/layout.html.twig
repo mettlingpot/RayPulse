@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    
+
 {{ include("::nav.html.twig") }}
 
   <div class="container">
@@ -31,20 +31,37 @@
             <li><a href="{{ path('mp_user_profil') }}">Favoris</a></li>
             <li><a href="{{ path('logout') }}">Déconnexion</a></li>
         </ul> 
-        <h4>Evénements à venir</h4>
-           {{ render(controller("MPPlatformBundle:Advert:menu", {'limit': 3})) }}
         {% else %}
-        <h4>Evénements à venir</h4>
-           {{ render(controller("MPPlatformBundle:Advert:menu", {'limit': 3})) }}
+        <ul class="nav nav-pills nav-stacked"> 
+            <h3></h3>
+            <li><a href="{{ path('login') }}">Connectez vous</a></li>
+            <li><a href="{{ path('mp_user_register') }}">Inscrivez vous</a></li>        
+        </ul> 
         {% endif %}
+
       </div>
       <div id="content" class="col-md-9">
+    <p>
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
+    </p>
+    <p>
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    </p>
+
         {% block body %}
         {% endblock %}
       </div>
     </div>
 
     <hr>
+
+
 
     <footer>
         <div id="content" class="col-md-9">

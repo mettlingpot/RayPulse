@@ -41,18 +41,8 @@
 
       </div>
       <div id="content" class="col-md-9">
-    <p>
-      {# On affiche tous les messages flash dont le nom est « info » #}
-      {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">{{ message }}</div>
-      {% endfor %}
-    </p>
-    <p>
-      {# On affiche tous les messages flash dont le nom est « info » #}
-      {% for message in app.session.flashbag.get('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-      {% endfor %}
-    </p>
+      
+  {{ include("::errorSuccess.html.twig") }} 
 
         {% block body %}
         {% endblock %}

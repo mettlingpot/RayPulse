@@ -7,11 +7,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use MP\PlatformBundle\Entity\Advert;
 use Doctrine\Common\Collections\ArrayCollection;
 use MP\PlatformBundle\Entity\Adresse;
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="MP\UserBundle\Repository\UserRepository")
+ *
+ * @Serializer\ExclusionPolicy("ALL")
  */
 class User implements UserInterface
 {
@@ -29,6 +33,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
+     *
+     * @Serializer\Expose
      */
     private $username;
 

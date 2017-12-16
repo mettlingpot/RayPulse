@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
 {
@@ -21,7 +23,14 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('username')
-            ->add('password')
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'invalid_message' => 'Le mot de passe ne correspond pas',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => true,
+                'first_options'  => array('label' => 'Mot de Passe'),
+                'second_options' => array('label' => 'Confirmation'),
+            ))
             //->add('adresse',    AdresseType::class) 
             ->add('save',      SubmitType::class);
     }

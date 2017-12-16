@@ -60,7 +60,7 @@ class UserController extends Controller
         $this->get('mailer')->send($message);
   
               
-            $request->getSession()->getFlashBag()->add('notice', 'Bienvenue');
+            $request->getSession()->getFlashBag()->add('info', 'Bienvenue');
             return $this->redirectToRoute('login');
           }
         }

@@ -30,7 +30,9 @@
   </p>
     {% endif %}
     {% if advert.image is not null %}
-      <img class="img-responsive"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}">
+      <img class="img-responsive" src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.id ~ '.' ~ advert.image.url) }}"
+  alt="{{ advert.image.alt }}"
+>
     {% endif %}
 
   <p>

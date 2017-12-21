@@ -8,6 +8,8 @@ use MP\PlatformBundle\Entity\Advert;
 use Doctrine\Common\Collections\ArrayCollection;
 use MP\PlatformBundle\Entity\Adresse;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * User
@@ -44,10 +46,11 @@ class User implements UserInterface
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
+     /**
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      */
     private $email;
 

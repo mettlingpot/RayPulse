@@ -10,7 +10,7 @@
 <div class="col-sm-6 col-md-4">
    <div class="thumbnail">
        {% if advert.image is not null %}
-            <div class="containerImg"><img class="img-responsive img"  src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.url) }}" alt="{{ advert.image.alt }}"></div>
+            <div class="containerImg"><img class="img-responsive img" src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}"></div>
        {% endif %}
      <div class="caption">
          

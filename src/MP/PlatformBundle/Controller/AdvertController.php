@@ -56,7 +56,6 @@ class AdvertController extends Controller
         if ($form->isValid()) {
           
         $advert->setUser($user);
-        $advert->getImage()->upload();
         $adresse = $advert->getAdresse();
             
         $em = $this->getDoctrine()->getManager();

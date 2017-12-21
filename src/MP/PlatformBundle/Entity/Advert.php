@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use MP\UserBundle\Entity\User;
 use MP\PlatformBundle\Entity\Adresse;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Advert
  *
@@ -80,7 +82,8 @@ class Advert
 
     
     /**
-    * @ORM\OneToOne(targetEntity="MP\PlatformBundle\Entity\Image", cascade={"persist"})
+    * @ORM\OneToOne(targetEntity="MP\PlatformBundle\Entity\Image", cascade={"persist","remove"})
+    * @Assert\Valid
     */
     private $image;
     

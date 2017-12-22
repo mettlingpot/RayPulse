@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class AdresseType extends AbstractType
 {
@@ -14,7 +15,17 @@ class AdresseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numero')->add('rue')->add('code')->add('ville');
+        $builder                
+                ->add('adresse')                
+                ->add('pays', HiddenType::class, array('data' => '',))
+                ->add('departement', HiddenType::class, array('data' => '',))
+                ->add('numero', HiddenType::class, array('data' => '',))
+                ->add('rue', HiddenType::class, array('data' => '',))
+                ->add('code', HiddenType::class, array('data' => '',))
+                ->add('ville', HiddenType::class, array('data' => '',))                
+                ->add('lat', HiddenType::class, array('data' => '',))                
+                ->add('lng', HiddenType::class, array('data' => '',));
+
             //->add('save',      SubmitType::class);
     }
     

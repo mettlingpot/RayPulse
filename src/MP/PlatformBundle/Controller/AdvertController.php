@@ -82,16 +82,17 @@ class AdvertController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
-
+    dump($advert);
     if (null === $advert) {
       // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
       $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'existe pas.");
       return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
-    $form = $this->get('form.factory')->create(AdvertEditType::class, $advert);
+    $form = $this->get('form.factory')->create(AdvertType::class, $advert);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $adresse = $advert->getAdresse();
       $em->flush();
         
       $request->getSession()->getFlashBag()->add('info', 'événement bien modifié.');

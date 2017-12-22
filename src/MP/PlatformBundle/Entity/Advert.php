@@ -92,7 +92,7 @@ class Advert
     */
     private $categories;
     /**
-    * @ORM\OneToOne(targetEntity="MP\PlatformBundle\Entity\Adresse", cascade={"persist"})
+    * @ORM\OneToOne(targetEntity="MP\PlatformBundle\Entity\Adresse", cascade={"persist","remove"})
     */
     private $adresse;
 
@@ -424,5 +424,19 @@ class Advert
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \MP\PlatformBundle\Entity\Adresse $adresse
+     *
+     * @return Advert
+     */
+    public function setAdresse(\MP\PlatformBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
     }
 }

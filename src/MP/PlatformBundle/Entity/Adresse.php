@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Adresse
- *
+ * 
  * @ORM\Table(name="adresse")
  * @ORM\Entity(repositoryClass="MP\PlatformBundle\Repository\AdresseRepository")
  */
@@ -20,7 +20,28 @@ class Adresse
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
+     */
+    private $adresse;
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255, nullable=true)
+     */
+    private $pays;
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="departement", type="string", length=255, nullable=true)
+     */
+    private $departement;
+    
     /**
      * @var string
      *
@@ -48,7 +69,19 @@ class Adresse
      * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
-
+    /**
+     * @var float     
+     *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    protected $lat;
+ 
+    /**
+     * @var float 
+     *
+     * @ORM\Column(name="lng", type="float", nullable=true)
+     */
+    protected $lng;
 
     /**
      * Get id
@@ -59,7 +92,15 @@ class Adresse
     {
         return $this->id;
     }
-
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+ 
+    public function getAddress()
+    {
+        return $this->address;
+    }
     /**
      * Set numero
      *
@@ -154,5 +195,102 @@ class Adresse
     public function getVille()
     {
         return $this->ville;
+    }
+     public function getLat()
+    {
+        return $this->lat;
+    }
+ 
+    public function setLat($lat)
+    {
+        if (is_string($lat)) {
+            $lat = floatval($lat);
+        }
+        $this->lat = $lat;
+    }
+ 
+    public function getLng()
+    {
+        return $this->lng;
+    }
+ 
+    public function setLng($lng)
+    {
+        if (is_string($lng)) {
+            $lng = floatval($lng);
+        }
+        $this->lng = $lng;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Adresse
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Adresse
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * Set departement
+     *
+     * @param string $departement
+     *
+     * @return Adresse
+     */
+    public function setDepartement($departement)
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Get departement
+     *
+     * @return string
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
     }
 }

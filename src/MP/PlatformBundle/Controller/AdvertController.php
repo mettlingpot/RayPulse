@@ -82,7 +82,7 @@ class AdvertController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
-    dump($advert);
+    //dump($advert);
     if (null === $advert) {
       // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
       $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'existe pas.");

@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block MP_body %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&callback=initMap" async defer></script>
+
 <script type="text/javascript">     
 
 function initMap(){
@@ -65,7 +67,6 @@ function addMarker(locations,map){
 }
 </script>
 <div id="mpMap" style="width: 100%; height:500px"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&callback=initMap" async defer></script>
 <style>
     img{
         width:200px;

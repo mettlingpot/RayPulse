@@ -1,0 +1,74 @@
+{% extends "MPPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Map - {{ parent() }}
+{% endblock %}
+
+{% block MP_body %}
+<script type="text/javascript">     
+
+function initMap(){
+    var tabAnnonceurs = new Array;
+
+    var locations = JSON.parse('{{ advert | raw}}');
+    console.log(locations);
+tabAnnonceurs[0]= locations;
+    var map = new google.maps.Map(document.getElementById('mpMap'), {
+      zoom: 7,
+      center: new google.maps.LatLng(locations.adresse.lat, locations.adresse.lng)
+    });
+
+
+   for (var location of tabAnnonceurs)  {
+        addMarker(location, map);
+    }
+}      
+function addMarker(locations,map){
+ console.log(locations.id);
+    var contentStringSite = '<div id="'+locations.id+'">'+
+            '<div id="siteNotice">'+
+            '</div>'+'<img src="'+'/../../../../web//uploads/img/'+locations.image.id+'.'+locations.image.url+'"></img>'+
+            '<h1 id="firstHeading" class="firstHeading"></h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>'+locations.title+', </b>'+locations.content+'</p>'+
+            '<p><a href="http://'+locations.site+'">'+
+            ''+locations.site+'</a>'+'</p>'+
+            '<p><a href="../advert/'+locations.id+'" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>'+
+            '</div>'+
+            '</div>';
+    var contentString = '<div id="'+locations.id+'">'+
+            '<div id="siteNotice">'+
+            '</div>'+'<img src="'+'/../../../../web/uploads/img/'+locations.image.id+'.'+locations.image.url+'"></img>'+
+            '<h1 id="firstHeading" class="firstHeading"></h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>'+locations.title+', </b>'+locations.content+'</p>'+
+            '<p><a href="../advert/'+locations.id+'" class="btn btn-xs btn-primary" role="button" title="En savoir +">En savoir +</a>'+
+            '</div>'+
+            '</div>';
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations.adresse.lat, locations.adresse.lng),
+            map: map
+            
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker,i) {
+        return function() {
+            if (locations.site){
+                contentString = contentStringSite;
+            }
+            infowindow.setContent(contentString);
+            infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+}
+</script>
+<div id="mpMap" style="width: 100%; height:500px"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&callback=initMap" async defer></script>
+<style>
+    img{
+        width:200px;
+    }
+</style>
+{% endblock %}

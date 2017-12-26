@@ -40,6 +40,12 @@
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>
+    {% if advert.adresse.lat is not null %}
+    <a href="{{ path('mp_platform_map', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-map-marker"></i>
+      Voir sur la carte 
+    </a>
+    {% endif %}
 
   </p>
 

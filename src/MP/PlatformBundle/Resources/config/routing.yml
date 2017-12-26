@@ -7,8 +7,7 @@ mp_platform_home:
 mp_platform_view:
     path:    /advert/{id}
     defaults:  { _controller: MPPlatformBundle:Advert:view }
-    requirements: 
-        id: '\d+'
+
 
 mp_platform_edit:
     path:    /edit/{id}
@@ -30,6 +29,10 @@ mp_platform_add:
 mp_platform_recherche:
     path:    /recherche
     defaults:  { _controller: MPPlatformBundle:Advert:recherche }
+
+mp_platform_map:
+    path:    /map/{id}
+    defaults:  { _controller: MPPlatformBundle:Advert:map }
 
 mp_platform_favoris:
     path:    /favoris/{id}

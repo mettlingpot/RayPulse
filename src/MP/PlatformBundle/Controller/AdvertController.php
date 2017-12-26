@@ -194,7 +194,23 @@ class AdvertController extends Controller
           
         return $this->redirect($_SERVER['HTTP_REFERER']);
       }
+    
+    public function mapAction($id,Request $request)
+      {
+        $repository = $this->getDoctrine()
+          ->getManager()
+          ->getRepository('MPPlatformBundle:Advert')
+        ;
 
+        $advert = $repository->find($id);
+
+        $data = $this->get('jms_serializer')->serialize($advert, 'json');
+
+        dump($data);
+        return $this->render('MPPlatformBundle:Advert:map.html.twig', array(
+          'advert' => $data
+        ));
+      }
 
 }
 

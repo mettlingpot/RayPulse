@@ -5,8 +5,12 @@
         <title>{% block title %}Raypulse{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&libraries=places&callback=initAutocomplete"
+        async defer>
+      </script>
     </head>
     <body>
+    
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

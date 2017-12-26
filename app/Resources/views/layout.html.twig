@@ -9,7 +9,11 @@
   {% block stylesheets %}          
     <link rel="stylesheet" href="{{ asset('main.css') }}"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&libraries=places"></script>
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&callback=initMap" async defer></script>#}
 
+          {#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&libraries=places&callback=initAutocomplete"
+        async defer></script>#}
   {% endblock %}
 </head>
 
@@ -63,9 +67,6 @@
   {% block javascripts %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWDCZvF_wF0Do3swQOfbOGj3Go6PHY2TQ&libraries=places&callback=initAutocomplete"
-        async defer>
-      </script>
   {% endblock %}
 
 </body>

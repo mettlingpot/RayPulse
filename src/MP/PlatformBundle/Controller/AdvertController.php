@@ -80,6 +80,7 @@ class AdvertController extends Controller
 
   public function editAction($id, Request $request)
   {
+    $user = $this->getUser();
     $em = $this->getDoctrine()->getManager();
     $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
     //dump($advert);
@@ -87,6 +88,11 @@ class AdvertController extends Controller
       // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
       $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'existe pas.");
       return $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+    if ($user->getId() !== $advert->getUser()->getId()) {
+      // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
+      $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'est pas a vous.");
+      return $this->redirectToRoute('mp_platform_home');
     }
 
     $form = $this->get('form.factory')->create(AdvertType::class, $advert);
@@ -108,12 +114,17 @@ class AdvertController extends Controller
 
   public function deleteAction(Request $request, $id)
   {
+    $user = $this->getUser();
     $em = $this->getDoctrine()->getManager();
-
     $advert = $em->getRepository('MPPlatformBundle:Advert')->find($id);
 
     if (null === $advert) {
       throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
+    }
+    if ($user->getId() !== $advert->getUser()->getId()) {
+      // throw new NotFoundHttpException("L'événement d'id ".$id." n'existe pas.");
+      $request->getSession()->getFlashBag()->add('info', "L'événement d'id ".$id." n'est pas a vous.");
+      return $this->redirectToRoute('mp_platform_home');
     }
 
     $form = $this->get('form.factory')->create();
@@ -206,7 +217,7 @@ class AdvertController extends Controller
 
         $data = $this->get('jms_serializer')->serialize($advert, 'json');
 
-        dump($data);
+        // dump($data);
         return $this->render('MPPlatformBundle:Advert:map.html.twig', array(
           'advert' => $data
         ));

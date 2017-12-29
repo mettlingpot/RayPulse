@@ -212,14 +212,28 @@ class AdvertController extends Controller
           ->getManager()
           ->getRepository('MPPlatformBundle:Advert')
         ;
+        $cible = $repository->find($id);
+        $adverts = $repository->findAll();
+        dump($adverts);
 
-        $advert = $repository->find($id);
-
-        $data = $this->get('jms_serializer')->serialize($advert, 'json');
-
+        // foreach ($adverts as $advert){
+        //       $adresse = array('adresse'=>array('id'      =>$advert->getId(),
+        //                               'title'   =>$advert->getTitle(),
+        //                               'content' =>$advert->getContent(),
+        //                               'site'    =>$advert->getSite(),
+        //                               'lng'     =>$advert->getAdresse()->getLng(),
+        //                               'lat'     =>$advert->getAdresse()->getLat(),
+        //                               'image'   =>$advert->getImage()
+        //                               ));
+        // }
+        
+         $data = $this->get('jms_serializer')->serialize($adverts, 'json');
+         $dataCible = $this->get('jms_serializer')->serialize($cible,'json');
         // dump($data);
         return $this->render('MPPlatformBundle:Advert:map.html.twig', array(
-          'advert' => $data
+          'advert' => $data,
+          'cible' => $dataCible
+
         ));
       }
 

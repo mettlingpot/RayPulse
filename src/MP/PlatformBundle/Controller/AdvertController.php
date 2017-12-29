@@ -214,7 +214,7 @@ class AdvertController extends Controller
         ;
         $cible = $repository->find($id);
         $adverts = $repository->findAll();
-        dump($adverts);
+        // dump($adverts);
 
         // foreach ($adverts as $advert){
         //       $adresse = array('adresse'=>array('id'      =>$advert->getId(),

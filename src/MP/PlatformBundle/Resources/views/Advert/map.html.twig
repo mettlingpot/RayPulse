@@ -15,9 +15,9 @@ function initMap(){
     var tabAdverts = JSON.parse({{(advert|json_encode|raw)}});
     var tabCible = JSON.parse({{(cible|json_encode|raw)}});
 
-    console.log(tabAdverts);
+    //console.log(tabAdverts);
     var map = new google.maps.Map(document.getElementById('mpMap'), {
-      zoom: 9,
+      zoom: 11,
       center: new google.maps.LatLng(tabCible.adresse.lat, tabCible.adresse.lng)
     });
 

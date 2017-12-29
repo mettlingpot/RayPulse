@@ -17,12 +17,12 @@ function initMap(){
 
     console.log(tabAdverts);
     var map = new google.maps.Map(document.getElementById('mpMap'), {
-      zoom: 7,
+      zoom: 9,
       center: new google.maps.LatLng(tabCible.adresse.lat, tabCible.adresse.lng)
     });
 
    for (let location of tabAdverts)  {
-           console.log(location.adresse.lat);
+           //console.log(location.adresse.lat);
 
        if(location.adresse.lat !== null){
         addMarker(location, map);
@@ -32,7 +32,7 @@ function initMap(){
     }
 }      
 function addMarker(locations,map){
- console.log(locations);
+ //console.log(locations);
     var contentStringSite = '<div id="'+locations.id+'">'+
             '<div id="siteNotice">'+
             '</div>'+'<img src="'+'/../../../../uploads/img/'+locations.image.id+'.'+locations.image.url+'"></img>'+

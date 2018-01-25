@@ -12,7 +12,7 @@ body {
 	min-height: 190px;
 
 	background-repeat:no-repeat;
-	background-size:contain;
+	background-size:cover;
 	background-position:center;
 }
 .img{

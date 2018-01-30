@@ -61,7 +61,6 @@ class DefaultController extends Controller
     {
         $liste = new liste();
         //$articles = new Article();
-        
         $articles = $this->getDoctrine()->getRepository('MPPlatformBundle:Advert')->findAll();
         
         foreach ($articles as $value) {
@@ -70,6 +69,31 @@ class DefaultController extends Controller
         
         if (empty($liste)) {
             return new JsonResponse(['message' => 'Article not found'], Response::HTTP_NOT_FOUND);
+        }
+        $view = View::create($liste);
+        $view->setFormat('json');
+
+        return $view;
+    }
+        
+    /**
+     * @Rest\View()
+     * @Rest\Get("recherche")
+     */
+    public function rechercheAction(Request $request)
+    {
+        $liste = new liste();
+        $recherche = $request->get('recherche');
+        $em = $this->getDoctrine()->getManager()->getRepository('MPPlatformBundle:Advert');
+        $articles = $em->findByRecherche($recherche);
+        //dump($articles);
+        
+        foreach ($articles as $value) {
+                $liste->addArticle($value);
+        }
+        
+        if (empty($articles)) {
+            return new JsonResponse(['message' => 'Aucune annonce ne correspond à cette recherche'], Response::HTTP_NOT_FOUND);
         }
         $view = View::create($liste);
         $view->setFormat('json');

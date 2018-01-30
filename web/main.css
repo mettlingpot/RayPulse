@@ -26,6 +26,17 @@ body {
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);  
 }
+.navbar-brand {
+  padding: 0px;
+  z-index:1;
+}
+.navbar-brand img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+  z-index: 3;
+}
+
   .form-signin-heading,
 	.checkbox {
 	  margin-bottom: 30px;
